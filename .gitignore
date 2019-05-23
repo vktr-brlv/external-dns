@@ -46,3 +46,6 @@ external-dns
 
 # vendor dir
 vendor/
+
+# bazel folders
+bazel-*
