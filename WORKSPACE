@@ -150,6 +150,8 @@ go_repository(
 
 go_repository(
     name = "com_github_coreos_etcd",
+    build_file_proto_mode = "disable_global",
+    build_file_generation = "on",
     importpath = "github.com/coreos/etcd",
     tag = "v3.3.10",
 )
@@ -907,18 +909,22 @@ go_repository(
 go_repository(
     name = "io_istio_api",
     commit = "db16d82d3672",
+    build_file_generation = "on",
+    build_file_proto_mode = "disable_global",
     importpath = "istio.io/api",
 )
 
 go_repository(
     name = "io_istio_istio",
     commit = "2b1331886076",
+    build_file_proto_mode = "disable_global",
     importpath = "istio.io/istio",
 )
 
 go_repository(
     name = "io_k8s_api",
     commit = "072894a440bd",
+    build_file_proto_mode = "disable_global",
     importpath = "k8s.io/api",
 )
 
@@ -932,6 +938,7 @@ go_repository(
     name = "io_k8s_apimachinery",
     commit = "103fd098999d",
     importpath = "k8s.io/apimachinery",
+    build_file_proto_mode = "disable_global",
 )
 
 go_repository(
