@@ -283,12 +283,6 @@ go_repository(
 )
 
 go_repository(
-    name = "com_github_go_resty_resty",
-    importpath = "github.com/go-resty/resty",
-    tag = "v1.8.0",
-)
-
-go_repository(
     name = "com_github_go_stack_stack",
     importpath = "github.com/go-stack/stack",
     tag = "v1.8.0",
@@ -531,7 +525,7 @@ go_repository(
 go_repository(
     name = "com_github_linode_linodego",
     importpath = "github.com/linode/linodego",
-    tag = "v0.3.0",
+    tag = "v0.9.0",
 )
 
 go_repository(
