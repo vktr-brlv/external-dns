@@ -303,6 +303,7 @@ go_repository(
     name = "com_github_gogo_googleapis",
     importpath = "github.com/gogo/googleapis",
     tag = "v1.1.0",
+    build_file_proto_mode = "disable_global",
 )
 
 go_repository(
@@ -922,8 +923,10 @@ go_repository(
 go_repository(
     name = "io_istio_istio",
     commit = "2b1331886076",
+    build_file_generation = "on",
     build_file_proto_mode = "disable_global",
     importpath = "istio.io/istio",
+    build_extra_args = ["-exclude=vendor"]
 )
 
 go_repository(
@@ -936,7 +939,9 @@ go_repository(
 go_repository(
     name = "io_k8s_apiextensions_apiserver",
     commit = "3de98c57bc05",
+    build_file_proto_mode = "disable_global",
     importpath = "k8s.io/apiextensions-apiserver",
+    build_extra_args = ["-exclude=vendor"]
 )
 
 go_repository(
