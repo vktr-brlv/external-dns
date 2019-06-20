@@ -12,6 +12,13 @@ http_archive(
     sha256 = "3c681998538231a2d24d0c07ed5a7658cb72bfb5fd4bf9911157c0e9ac6a2687",
 )
 
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = "aed1c249d4ec8f703edddf35cbe9dfaca0b5f5ea6e4cd9e83e99f3b0d1136c3d",
+    strip_prefix = "rules_docker-0.7.0",
+    urls = ["https://github.com/bazelbuild/rules_docker/archive/v0.7.0.tar.gz"],
+)
+
 load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
 
 go_rules_dependencies()
@@ -21,6 +28,10 @@ go_register_toolchains()
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
 gazelle_dependencies()
+
+load("@io_bazel_rules_docker//go:image.bzl", _go_image_repos = "repositories")
+
+_go_image_repos()
 
 go_repository(
     name = "co_honnef_go_tools",
@@ -150,6 +161,8 @@ go_repository(
 
 go_repository(
     name = "com_github_coreos_etcd",
+    build_file_proto_mode = "disable_global",
+    build_file_generation = "on",
     importpath = "github.com/coreos/etcd",
     tag = "v3.3.10",
 )
@@ -281,12 +294,6 @@ go_repository(
 )
 
 go_repository(
-    name = "com_github_go_resty_resty",
-    importpath = "github.com/go-resty/resty",
-    tag = "v1.8.0",
-)
-
-go_repository(
     name = "com_github_go_stack_stack",
     importpath = "github.com/go-stack/stack",
     tag = "v1.8.0",
@@ -296,6 +303,7 @@ go_repository(
     name = "com_github_gogo_googleapis",
     importpath = "github.com/gogo/googleapis",
     tag = "v1.1.0",
+    build_file_proto_mode = "disable_global",
 )
 
 go_repository(
@@ -529,7 +537,7 @@ go_repository(
 go_repository(
     name = "com_github_linode_linodego",
     importpath = "github.com/linode/linodego",
-    tag = "v0.3.0",
+    tag = "v0.9.0",
 )
 
 go_repository(
@@ -907,31 +915,40 @@ go_repository(
 go_repository(
     name = "io_istio_api",
     commit = "db16d82d3672",
+    build_file_generation = "on",
+    build_file_proto_mode = "disable_global",
     importpath = "istio.io/api",
 )
 
 go_repository(
     name = "io_istio_istio",
     commit = "2b1331886076",
+    build_file_generation = "on",
+    build_file_proto_mode = "disable_global",
     importpath = "istio.io/istio",
+    build_extra_args = ["-exclude=vendor"]
 )
 
 go_repository(
     name = "io_k8s_api",
     commit = "072894a440bd",
+    build_file_proto_mode = "disable_global",
     importpath = "k8s.io/api",
 )
 
 go_repository(
     name = "io_k8s_apiextensions_apiserver",
     commit = "3de98c57bc05",
+    build_file_proto_mode = "disable_global",
     importpath = "k8s.io/apiextensions-apiserver",
+    build_extra_args = ["-exclude=vendor"]
 )
 
 go_repository(
     name = "io_k8s_apimachinery",
     commit = "103fd098999d",
     importpath = "k8s.io/apimachinery",
+    build_file_proto_mode = "disable_global",
 )
 
 go_repository(
