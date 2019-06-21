@@ -1,0 +1,6 @@
+filegroup(
+    name = "certs",
+    testonly = True,
+    srcs = glob(["*.pem"]),
+    visibility = ["//visibility:public"],
+)

@@ -49,3 +49,6 @@ vendor/
 
 # bazel folders
 bazel-*
+
+# Itellij
+.ijwb

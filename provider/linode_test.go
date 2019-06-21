@@ -397,14 +397,14 @@ func TestLinodeApplyChangesTargetAdded(t *testing.T) {
 		"ListDomains",
 		mock.Anything,
 		mock.Anything,
-	).Return([]*linodego.Domain{{Domain: "example.com", ID: 1}}, nil).Once()
+	).Return([]linodego.Domain{{Domain: "example.com", ID: 1}}, nil).Once()
 
 	mockDomainClient.On(
 		"ListDomainRecords",
 		mock.Anything,
 		1,
 		mock.Anything,
-	).Return([]*linodego.DomainRecord{{ID: 11, Name: "", Type: "A", Target: "targetA"}}, nil).Once()
+	).Return([]linodego.DomainRecord{{ID: 11, Name: "", Type: "A", Target: "targetA"}}, nil).Once()
 
 	// Apply Actions
 	mockDomainClient.On(
@@ -456,14 +456,14 @@ func TestLinodeApplyChangesTargetRemoved(t *testing.T) {
 		"ListDomains",
 		mock.Anything,
 		mock.Anything,
-	).Return([]*linodego.Domain{{Domain: "example.com", ID: 1}}, nil).Once()
+	).Return([]linodego.Domain{{Domain: "example.com", ID: 1}}, nil).Once()
 
 	mockDomainClient.On(
 		"ListDomainRecords",
 		mock.Anything,
 		1,
 		mock.Anything,
-	).Return([]*linodego.DomainRecord{{ID: 11, Name: "", Type: "A", Target: "targetA"}, {ID: 12, Type: "A", Name: "", Target: "targetB"}}, nil).Once()
+	).Return([]linodego.DomainRecord{{ID: 11, Name: "", Type: "A", Target: "targetA"}, {ID: 12, Type: "A", Name: "", Target: "targetB"}}, nil).Once()
 
 	// Apply Actions
 	mockDomainClient.On(
@@ -512,14 +512,14 @@ func TestLinodeApplyChangesNoChanges(t *testing.T) {
 		"ListDomains",
 		mock.Anything,
 		mock.Anything,
-	).Return([]*linodego.Domain{{Domain: "example.com", ID: 1}}, nil).Once()
+	).Return([]linodego.Domain{{Domain: "example.com", ID: 1}}, nil).Once()
 
 	mockDomainClient.On(
 		"ListDomainRecords",
 		mock.Anything,
 		1,
 		mock.Anything,
-	).Return([]*linodego.DomainRecord{{ID: 11, Name: "", Type: "A", Target: "targetA"}}, nil).Once()
+	).Return([]linodego.DomainRecord{{ID: 11, Name: "", Type: "A", Target: "targetA"}}, nil).Once()
 
 	err := provider.ApplyChanges(context.Background(), &plan.Changes{})
 	require.NoError(t, err)
