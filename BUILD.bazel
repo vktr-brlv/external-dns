@@ -1,6 +1,7 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
 load("@bazel_gazelle//:def.bzl", "gazelle")
 load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+load("@io_bazel_rules_docker//container:container.bzl", "container_push")
 
 # gazelle:prefix github.com/kubernetes-incubator/external-dns
 gazelle(
@@ -35,4 +36,13 @@ go_binary(
 go_image(
     name = "external_dns_image",
     binary = ":external-dns",
+)
+
+container_push(
+    name = "push",
+    format = "Docker",
+    image = ":external_dns_image",
+    registry = "index.docker.io",
+    repository = "vktrbrlv/external-dns",
+    tag = "linux_amd64"
 )
